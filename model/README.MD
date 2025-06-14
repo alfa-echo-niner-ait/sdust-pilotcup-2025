@@ -115,4 +115,4 @@ history = model.fit(
 
 - For best results, ensure data preprocessing matches the steps used during model training.
 - For integration with the Dash app, use the saved model and scaler files from this folder.
-- For questions, refer to the main project [README](../README.md) or open an issue.
+- For questions, refer to the main project [README](../README.MD) or open an issue.
