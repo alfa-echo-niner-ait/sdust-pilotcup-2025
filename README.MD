@@ -112,6 +112,10 @@ This project presents a complete pipeline for air quality forecasting, from data
      python app/app.py
      ```
 
+## 📽️ App Preview
+
+  ![App Preview](app-preview.mp4)
+
 ## 🧑‍💻 Authors
 
 <table>
