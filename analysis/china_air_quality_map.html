@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_4680dfd93dfb07db8f9e7baa645afd5e {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="position: fixed;
+     bottom: 50px; left: 50px; width: 180px; height: 180px;
+     border:2px solid grey; z-index:9999; font-size:14px;
+     background-color:white; opacity: .85;
+     ">
+     &nbsp; <b>PM2.5 Pollution Level</b> <br>
+     &nbsp; <i class="fa fa-circle" style="color:green"></i> &nbsp; Good (&le; 50) <br>
+     &nbsp; <i class="fa fa-circle" style="color:orange"></i> &nbsp; Moderate (51-100) <br>
+     &nbsp; <i class="fa fa-circle" style="color:red"></i> &nbsp; Unhealthy (101-150) <br>
+     &nbsp; <i class="fa fa-circle" style="color:purple"></i> &nbsp; Very Unhealthy (151-200) <br>
+     &nbsp; <i class="fa fa-circle" style="color:maroon"></i> &nbsp; Hazardous (>200)
+</div>
+    
+            <div class="folium-map" id="map_4680dfd93dfb07db8f9e7baa645afd5e" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_4680dfd93dfb07db8f9e7baa645afd5e = L.map(
+                "map_4680dfd93dfb07db8f9e7baa645afd5e",
+                {
+                    center: [35.8617, 104.1954],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 5,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a6c0c19efbfed171043ccfa3b40dbf2a = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_a6c0c19efbfed171043ccfa3b40dbf2a.addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+            var circle_965c7317c3950aeb8c2363b442af650f = L.circle(
+                [36.103, 114.352],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_3479b04800de95f23b02945e31086931 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_29b2037c026d8ccdd93af47557b57b9a = $(`<div id="html_29b2037c026d8ccdd93af47557b57b9a" style="width: 100.0%; height: 100.0%;"><b>Anyang</b><br>Avg PM2.5: 125.61</div>`)[0];
+                popup_3479b04800de95f23b02945e31086931.setContent(html_29b2037c026d8ccdd93af47557b57b9a);
+            
+        
+
+        circle_965c7317c3950aeb8c2363b442af650f.bindPopup(popup_3479b04800de95f23b02945e31086931)
+        ;
+
+        
+    
+    
+            var circle_d47543ef725e1d9c7014f087de0fc1f1 = L.circle(
+                [39.904, 116.407],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_04b6585d4d9bc42b2fa90f976898c9a3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_479f84039df72f754f0a4a0496e57a7d = $(`<div id="html_479f84039df72f754f0a4a0496e57a7d" style="width: 100.0%; height: 100.0%;"><b>Beijing</b><br>Avg PM2.5: 99.68</div>`)[0];
+                popup_04b6585d4d9bc42b2fa90f976898c9a3.setContent(html_479f84039df72f754f0a4a0496e57a7d);
+            
+        
+
+        circle_d47543ef725e1d9c7014f087de0fc1f1.bindPopup(popup_04b6585d4d9bc42b2fa90f976898c9a3)
+        ;
+
+        
+    
+    
+            var circle_7f9659233c028135d1dcfa8029ceebbe = L.circle(
+                [43.817, 125.323],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_e7b7d287f8a9a592d7d71c4fa0e4373f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7dc30d10c4cef540259d7fce61062d43 = $(`<div id="html_7dc30d10c4cef540259d7fce61062d43" style="width: 100.0%; height: 100.0%;"><b>Changchun</b><br>Avg PM2.5: 94.29</div>`)[0];
+                popup_e7b7d287f8a9a592d7d71c4fa0e4373f.setContent(html_7dc30d10c4cef540259d7fce61062d43);
+            
+        
+
+        circle_7f9659233c028135d1dcfa8029ceebbe.bindPopup(popup_e7b7d287f8a9a592d7d71c4fa0e4373f)
+        ;
+
+        
+    
+    
+            var circle_8d5b91f9d26978dada5172e86de4b715 = L.circle(
+                [28.228, 112.938],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_d957914c91fa144dad48dbd1f6b6ede7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0cadb202d4d7798e481d2ef788b344a1 = $(`<div id="html_0cadb202d4d7798e481d2ef788b344a1" style="width: 100.0%; height: 100.0%;"><b>Changsha</b><br>Avg PM2.5: 109.47</div>`)[0];
+                popup_d957914c91fa144dad48dbd1f6b6ede7.setContent(html_0cadb202d4d7798e481d2ef788b344a1);
+            
+        
+
+        circle_8d5b91f9d26978dada5172e86de4b715.bindPopup(popup_d957914c91fa144dad48dbd1f6b6ede7)
+        ;
+
+        
+    
+    
+            var circle_5a4fdcfcaac04882fdb964160add7ba7 = L.circle(
+                [31.783, 119.965],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_55ba12f3f435f613c89a49c0d8b63c72 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_56a2aeb6abf6544a45cf458ad362f872 = $(`<div id="html_56a2aeb6abf6544a45cf458ad362f872" style="width: 100.0%; height: 100.0%;"><b>Changzhou</b><br>Avg PM2.5: 106.08</div>`)[0];
+                popup_55ba12f3f435f613c89a49c0d8b63c72.setContent(html_56a2aeb6abf6544a45cf458ad362f872);
+            
+        
+
+        circle_5a4fdcfcaac04882fdb964160add7ba7.bindPopup(popup_55ba12f3f435f613c89a49c0d8b63c72)
+        ;
+
+        
+    
+    
+            var circle_d6bb7a1551710a0a3a2ef055aa02a7ef = L.circle(
+                [30.572, 104.066],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_d5b2de73d6c81ffb6306db0888144bc1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2066deab1321124fe85dc766b4a18745 = $(`<div id="html_2066deab1321124fe85dc766b4a18745" style="width: 100.0%; height: 100.0%;"><b>Chengdu</b><br>Avg PM2.5: 108.49</div>`)[0];
+                popup_d5b2de73d6c81ffb6306db0888144bc1.setContent(html_2066deab1321124fe85dc766b4a18745);
+            
+        
+
+        circle_d6bb7a1551710a0a3a2ef055aa02a7ef.bindPopup(popup_d5b2de73d6c81ffb6306db0888144bc1)
+        ;
+
+        
+    
+    
+            var circle_f45a8a46150a888617557c09ff0cec21 = L.circle(
+                [29.563, 106.551],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_77f57571dc1916c7f82169d144d5b141 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3163ab40fc45fe1ad07f087b964cfc40 = $(`<div id="html_3163ab40fc45fe1ad07f087b964cfc40" style="width: 100.0%; height: 100.0%;"><b>Chongqing</b><br>Avg PM2.5: 100.29</div>`)[0];
+                popup_77f57571dc1916c7f82169d144d5b141.setContent(html_3163ab40fc45fe1ad07f087b964cfc40);
+            
+        
+
+        circle_f45a8a46150a888617557c09ff0cec21.bindPopup(popup_77f57571dc1916c7f82169d144d5b141)
+        ;
+
+        
+    
+    
+            var circle_817f3432b4e2ba4f5ab016b544fc10ea = L.circle(
+                [23.046, 113.746],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_f653bc41806e6c360768c7f44336337a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c62169d7dc5271fd639c72fc8e9d0c81 = $(`<div id="html_c62169d7dc5271fd639c72fc8e9d0c81" style="width: 100.0%; height: 100.0%;"><b>Dongguan</b><br>Avg PM2.5: 77.51</div>`)[0];
+                popup_f653bc41806e6c360768c7f44336337a.setContent(html_c62169d7dc5271fd639c72fc8e9d0c81);
+            
+        
+
+        circle_817f3432b4e2ba4f5ab016b544fc10ea.bindPopup(popup_f653bc41806e6c360768c7f44336337a)
+        ;
+
+        
+    
+    
+            var circle_d3a2d8de2c472592f9d7e21703aec853 = L.circle(
+                [23.021, 113.121],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_2d89150a9ccff0b8d5104bcf34d9525f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f6df0da8c1dbc356540e18862e13b572 = $(`<div id="html_f6df0da8c1dbc356540e18862e13b572" style="width: 100.0%; height: 100.0%;"><b>Foshan</b><br>Avg PM2.5: 77.06</div>`)[0];
+                popup_2d89150a9ccff0b8d5104bcf34d9525f.setContent(html_f6df0da8c1dbc356540e18862e13b572);
+            
+        
+
+        circle_d3a2d8de2c472592f9d7e21703aec853.bindPopup(popup_2d89150a9ccff0b8d5104bcf34d9525f)
+        ;
+
+        
+    
+    
+            var circle_9bd0a5a25bea9a3c3445f1c2eb4f0e15 = L.circle(
+                [41.884, 123.916],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_48614ee32d1d0a0071c82215a27c40d9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0df5f829376564ea724ffd4822f62ee1 = $(`<div id="html_0df5f829376564ea724ffd4822f62ee1" style="width: 100.0%; height: 100.0%;"><b>Fushun</b><br>Avg PM2.5: 100.11</div>`)[0];
+                popup_48614ee32d1d0a0071c82215a27c40d9.setContent(html_0df5f829376564ea724ffd4822f62ee1);
+            
+        
+
+        circle_9bd0a5a25bea9a3c3445f1c2eb4f0e15.bindPopup(popup_48614ee32d1d0a0071c82215a27c40d9)
+        ;
+
+        
+    
+    
+            var circle_a94899f52349f6359507c7dbfe6ef55a = L.circle(
+                [26.074, 119.296],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_d49f2bc2e2acbed96b7577b48491701a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_99879e49fc5e598fea2d153531ea03ab = $(`<div id="html_99879e49fc5e598fea2d153531ea03ab" style="width: 100.0%; height: 100.0%;"><b>Fuzhou</b><br>Avg PM2.5: 72.15</div>`)[0];
+                popup_d49f2bc2e2acbed96b7577b48491701a.setContent(html_99879e49fc5e598fea2d153531ea03ab);
+            
+        
+
+        circle_a94899f52349f6359507c7dbfe6ef55a.bindPopup(popup_d49f2bc2e2acbed96b7577b48491701a)
+        ;
+
+        
+    
+    
+            var circle_2ce4b29b2b38131602ca528b3af35826 = L.circle(
+                [23.129, 113.264],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_ca424ec9054971a88917af0f639e0457 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_971c43705b8e8566a47e8e1d48e5be8c = $(`<div id="html_971c43705b8e8566a47e8e1d48e5be8c" style="width: 100.0%; height: 100.0%;"><b>Guangzhou</b><br>Avg PM2.5: 79.95</div>`)[0];
+                popup_ca424ec9054971a88917af0f639e0457.setContent(html_971c43705b8e8566a47e8e1d48e5be8c);
+            
+        
+
+        circle_2ce4b29b2b38131602ca528b3af35826.bindPopup(popup_ca424ec9054971a88917af0f639e0457)
+        ;
+
+        
+    
+    
+            var circle_ed5d90ef2b8b041d75b7c4f79cccd1e7 = L.circle(
+                [26.647, 106.63],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_26c50d2d42ee213dc617382525afde9c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_df6aabd928db891896c8c7a5e96f153b = $(`<div id="html_df6aabd928db891896c8c7a5e96f153b" style="width: 100.0%; height: 100.0%;"><b>Guiyang</b><br>Avg PM2.5: 76.56</div>`)[0];
+                popup_26c50d2d42ee213dc617382525afde9c.setContent(html_df6aabd928db891896c8c7a5e96f153b);
+            
+        
+
+        circle_ed5d90ef2b8b041d75b7c4f79cccd1e7.bindPopup(popup_26c50d2d42ee213dc617382525afde9c)
+        ;
+
+        
+    
+    
+            var circle_3a6f32bcf5c35b501c48fe3d58fb48b0 = L.circle(
+                [20.045, 110.349],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_c2ede721e0f065438ec93299497080cb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b34a15a06121596bde542da7d7bbc733 = $(`<div id="html_b34a15a06121596bde542da7d7bbc733" style="width: 100.0%; height: 100.0%;"><b>Haikou</b><br>Avg PM2.5: 57.59</div>`)[0];
+                popup_c2ede721e0f065438ec93299497080cb.setContent(html_b34a15a06121596bde542da7d7bbc733);
+            
+        
+
+        circle_3a6f32bcf5c35b501c48fe3d58fb48b0.bindPopup(popup_c2ede721e0f065438ec93299497080cb)
+        ;
+
+        
+    
+    
+            var circle_2105914f1ff38d95b60a183d06315082 = L.circle(
+                [30.274, 120.155],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_581e01b9a320514dd32e937bcf58bbba = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_538adeac321f7d9bb288a0255633a964 = $(`<div id="html_538adeac321f7d9bb288a0255633a964" style="width: 100.0%; height: 100.0%;"><b>Hangzhou</b><br>Avg PM2.5: 97.07</div>`)[0];
+                popup_581e01b9a320514dd32e937bcf58bbba.setContent(html_538adeac321f7d9bb288a0255633a964);
+            
+        
+
+        circle_2105914f1ff38d95b60a183d06315082.bindPopup(popup_581e01b9a320514dd32e937bcf58bbba)
+        ;
+
+        
+    
+    
+            var circle_c416835441761d01257cb32e20d7b068 = L.circle(
+                [45.803, 126.535],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_2320bcbb0564d858e2c99ec3c56da4d5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e2f4ab7efac5292a5e66f5e6a26a26a0 = $(`<div id="html_e2f4ab7efac5292a5e66f5e6a26a26a0" style="width: 100.0%; height: 100.0%;"><b>Harbin</b><br>Avg PM2.5: 96.63</div>`)[0];
+                popup_2320bcbb0564d858e2c99ec3c56da4d5.setContent(html_e2f4ab7efac5292a5e66f5e6a26a26a0);
+            
+        
+
+        circle_c416835441761d01257cb32e20d7b068.bindPopup(popup_2320bcbb0564d858e2c99ec3c56da4d5)
+        ;
+
+        
+    
+    
+            var circle_074422c609f108e6789f21f7c7cf551a = L.circle(
+                [31.82, 117.227],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_b0c682893f09d31a4504234ae0987b0a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bfca9b65ec54346884d299f7b13cf6dd = $(`<div id="html_bfca9b65ec54346884d299f7b13cf6dd" style="width: 100.0%; height: 100.0%;"><b>Hefei</b><br>Avg PM2.5: 106.44</div>`)[0];
+                popup_b0c682893f09d31a4504234ae0987b0a.setContent(html_bfca9b65ec54346884d299f7b13cf6dd);
+            
+        
+
+        circle_074422c609f108e6789f21f7c7cf551a.bindPopup(popup_b0c682893f09d31a4504234ae0987b0a)
+        ;
+
+        
+    
+    
+            var circle_6ad73f339c1b390b5903a8675ac5eb3f = L.circle(
+                [47.345, 130.296],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_8530c34268f97aa7610932d7f8f1ee60 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a828d5f8c5b8ff503a65fde0a426f7ce = $(`<div id="html_a828d5f8c5b8ff503a65fde0a426f7ce" style="width: 100.0%; height: 100.0%;"><b>Hegang</b><br>Avg PM2.5: 71.99</div>`)[0];
+                popup_8530c34268f97aa7610932d7f8f1ee60.setContent(html_a828d5f8c5b8ff503a65fde0a426f7ce);
+            
+        
+
+        circle_6ad73f339c1b390b5903a8675ac5eb3f.bindPopup(popup_8530c34268f97aa7610932d7f8f1ee60)
+        ;
+
+        
+    
+    
+            var circle_27a13e20bd1df97f9c27133e46c09495 = L.circle(
+                [40.842, 111.766],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_f7baf04146da6cd314026f080b761e8d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5fd170f0cb920ecd2932e4d42dbbc95c = $(`<div id="html_5fd170f0cb920ecd2932e4d42dbbc95c" style="width: 100.0%; height: 100.0%;"><b>Hohhot</b><br>Avg PM2.5: 86.50</div>`)[0];
+                popup_f7baf04146da6cd314026f080b761e8d.setContent(html_5fd170f0cb920ecd2932e4d42dbbc95c);
+            
+        
+
+        circle_27a13e20bd1df97f9c27133e46c09495.bindPopup(popup_f7baf04146da6cd314026f080b761e8d)
+        ;
+
+        
+    
+    
+            var circle_caa76dcd601349a547a3c8278b1aeb2b = L.circle(
+                [23.543, 116.363],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_1216dea741f8ae3c9a04f153b7412973 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4f562b7c08c7beaa952ca9459416205f = $(`<div id="html_4f562b7c08c7beaa952ca9459416205f" style="width: 100.0%; height: 100.0%;"><b>Jieyang</b><br>Avg PM2.5: 82.83</div>`)[0];
+                popup_1216dea741f8ae3c9a04f153b7412973.setContent(html_4f562b7c08c7beaa952ca9459416205f);
+            
+        
+
+        circle_caa76dcd601349a547a3c8278b1aeb2b.bindPopup(popup_1216dea741f8ae3c9a04f153b7412973)
+        ;
+
+        
+    
+    
+            var circle_8f2e1e90347b0472fa7fbe92c461b643 = L.circle(
+                [36.651, 117.12],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_48c04ecbe8d6977e954b93cf675183f7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_27880c95f408d508e4eefd7f3cc83e9c = $(`<div id="html_27880c95f408d508e4eefd7f3cc83e9c" style="width: 100.0%; height: 100.0%;"><b>Jinan</b><br>Avg PM2.5: 111.87</div>`)[0];
+                popup_48c04ecbe8d6977e954b93cf675183f7.setContent(html_27880c95f408d508e4eefd7f3cc83e9c);
+            
+        
+
+        circle_8f2e1e90347b0472fa7fbe92c461b643.bindPopup(popup_48c04ecbe8d6977e954b93cf675183f7)
+        ;
+
+        
+    
+    
+            var circle_94209d137e2be8961df3aa9aba6d972d = L.circle(
+                [25.042, 102.712],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_ddbd34944eaad2bdc00745dabbc2d881 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f8ff6e6dbffb90e7e31e7b252b06d4a9 = $(`<div id="html_f8ff6e6dbffb90e7e31e7b252b06d4a9" style="width: 100.0%; height: 100.0%;"><b>Kunming</b><br>Avg PM2.5: 75.08</div>`)[0];
+                popup_ddbd34944eaad2bdc00745dabbc2d881.setContent(html_f8ff6e6dbffb90e7e31e7b252b06d4a9);
+            
+        
+
+        circle_94209d137e2be8961df3aa9aba6d972d.bindPopup(popup_ddbd34944eaad2bdc00745dabbc2d881)
+        ;
+
+        
+    
+    
+            var circle_6495618c7ae4421dbec6bcf8ed974098 = L.circle(
+                [36.061, 103.834],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_2b59f04e15fbe02bbed957c10e925394 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_112f05ac956b76d4dc2133b7711ee98d = $(`<div id="html_112f05ac956b76d4dc2133b7711ee98d" style="width: 100.0%; height: 100.0%;"><b>Lanzhou</b><br>Avg PM2.5: 110.84</div>`)[0];
+                popup_2b59f04e15fbe02bbed957c10e925394.setContent(html_112f05ac956b76d4dc2133b7711ee98d);
+            
+        
+
+        circle_6495618c7ae4421dbec6bcf8ed974098.bindPopup(popup_2b59f04e15fbe02bbed957c10e925394)
+        ;
+
+        
+    
+    
+            var circle_481cdb0c362198ad16ea8a9ef3f133e3 = L.circle(
+                [29.645, 91.117],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_82f061327adc2afae8b4f7a74d6fc1d6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_563ee492a71bf48278235119e3287a81 = $(`<div id="html_563ee492a71bf48278235119e3287a81" style="width: 100.0%; height: 100.0%;"><b>Lhasa</b><br>Avg PM2.5: 42.99</div>`)[0];
+                popup_82f061327adc2afae8b4f7a74d6fc1d6.setContent(html_563ee492a71bf48278235119e3287a81);
+            
+        
+
+        circle_481cdb0c362198ad16ea8a9ef3f133e3.bindPopup(popup_82f061327adc2afae8b4f7a74d6fc1d6)
+        ;
+
+        
+    
+    
+            var circle_8057b4ccf9cdabf1f8de847dc2f3e598 = L.circle(
+                [28.683, 115.858],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_ccbe0fd19acfb73194e9bfc4edcba359 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_465687ff4f23a0f4cfa9b5dae3902a97 = $(`<div id="html_465687ff4f23a0f4cfa9b5dae3902a97" style="width: 100.0%; height: 100.0%;"><b>Nanchang</b><br>Avg PM2.5: 92.70</div>`)[0];
+                popup_ccbe0fd19acfb73194e9bfc4edcba359.setContent(html_465687ff4f23a0f4cfa9b5dae3902a97);
+            
+        
+
+        circle_8057b4ccf9cdabf1f8de847dc2f3e598.bindPopup(popup_ccbe0fd19acfb73194e9bfc4edcba359)
+        ;
+
+        
+    
+    
+            var circle_2aceeae77dbe04e5add231c5cdf5c9f8 = L.circle(
+                [32.06, 118.796],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_a38d9a540291d55dbdddfa94b66543ff = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_112c29452a964c6c7ccfa18979121113 = $(`<div id="html_112c29452a964c6c7ccfa18979121113" style="width: 100.0%; height: 100.0%;"><b>Nanjing</b><br>Avg PM2.5: 97.54</div>`)[0];
+                popup_a38d9a540291d55dbdddfa94b66543ff.setContent(html_112c29452a964c6c7ccfa18979121113);
+            
+        
+
+        circle_2aceeae77dbe04e5add231c5cdf5c9f8.bindPopup(popup_a38d9a540291d55dbdddfa94b66543ff)
+        ;
+
+        
+    
+    
+            var circle_88390366b830c5082c96f449a455509b = L.circle(
+                [22.817, 108.366],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_f20f084e3b9cd7f069e2bf2df0c17a03 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2a3b4307362f59803ce7c4a6d9bd6eed = $(`<div id="html_2a3b4307362f59803ce7c4a6d9bd6eed" style="width: 100.0%; height: 100.0%;"><b>Nanning</b><br>Avg PM2.5: 85.74</div>`)[0];
+                popup_f20f084e3b9cd7f069e2bf2df0c17a03.setContent(html_2a3b4307362f59803ce7c4a6d9bd6eed);
+            
+        
+
+        circle_88390366b830c5082c96f449a455509b.bindPopup(popup_f20f084e3b9cd7f069e2bf2df0c17a03)
+        ;
+
+        
+    
+    
+            var circle_c954ad021f5781c5cc10ed40854f5371 = L.circle(
+                [29.868, 121.544],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_fb1f332e01b5d0411233fdb9da1ea177 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d8efba74c3530e56bdbf1aec7c6ba172 = $(`<div id="html_d8efba74c3530e56bdbf1aec7c6ba172" style="width: 100.0%; height: 100.0%;"><b>Ningbo</b><br>Avg PM2.5: 82.13</div>`)[0];
+                popup_fb1f332e01b5d0411233fdb9da1ea177.setContent(html_d8efba74c3530e56bdbf1aec7c6ba172);
+            
+        
+
+        circle_c954ad021f5781c5cc10ed40854f5371.bindPopup(popup_fb1f332e01b5d0411233fdb9da1ea177)
+        ;
+
+        
+    
+    
+            var circle_32b0d17b72bfdac019290b1a7376e020 = L.circle(
+                [36.067, 120.382],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_23c77888ae091d9df962ba58d4f8e250 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_24cba3c4d3162997d73dd211e82e9d0e = $(`<div id="html_24cba3c4d3162997d73dd211e82e9d0e" style="width: 100.0%; height: 100.0%;"><b>Qingdao</b><br>Avg PM2.5: 86.16</div>`)[0];
+                popup_23c77888ae091d9df962ba58d4f8e250.setContent(html_24cba3c4d3162997d73dd211e82e9d0e);
+            
+        
+
+        circle_32b0d17b72bfdac019290b1a7376e020.bindPopup(popup_23c77888ae091d9df962ba58d4f8e250)
+        ;
+
+        
+    
+    
+            var circle_feb6f4bda8c0bf33979a2138d901af08 = L.circle(
+                [39.932, 119.6],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_8dc34e8afce47015ea503a1179371ecd = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2e127a7fd71b4ad21f7ce54fd4a54e12 = $(`<div id="html_2e127a7fd71b4ad21f7ce54fd4a54e12" style="width: 100.0%; height: 100.0%;"><b>Qinhuangdao</b><br>Avg PM2.5: 93.68</div>`)[0];
+                popup_8dc34e8afce47015ea503a1179371ecd.setContent(html_2e127a7fd71b4ad21f7ce54fd4a54e12);
+            
+        
+
+        circle_feb6f4bda8c0bf33979a2138d901af08.bindPopup(popup_8dc34e8afce47015ea503a1179371ecd)
+        ;
+
+        
+    
+    
+            var circle_27e5e9005b47d7ff8e3fdab09592c0ad = L.circle(
+                [47.342, 123.955],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_541695e35f165a00f279bdf24e07507d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6a98b1ea876884ea59e2bc3eba7fdeff = $(`<div id="html_6a98b1ea876884ea59e2bc3eba7fdeff" style="width: 100.0%; height: 100.0%;"><b>Qiqihar</b><br>Avg PM2.5: 71.72</div>`)[0];
+                popup_541695e35f165a00f279bdf24e07507d.setContent(html_6a98b1ea876884ea59e2bc3eba7fdeff);
+            
+        
+
+        circle_27e5e9005b47d7ff8e3fdab09592c0ad.bindPopup(popup_541695e35f165a00f279bdf24e07507d)
+        ;
+
+        
+    
+    
+            var circle_d63244e79e5204c7823122f536b51163 = L.circle(
+                [31.23, 121.473],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_fb2508c208f66eeccd5f43f24fa4ae6b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_64e5748cae0b8baa06ca3b88634a3840 = $(`<div id="html_64e5748cae0b8baa06ca3b88634a3840" style="width: 100.0%; height: 100.0%;"><b>Shanghai</b><br>Avg PM2.5: 92.99</div>`)[0];
+                popup_fb2508c208f66eeccd5f43f24fa4ae6b.setContent(html_64e5748cae0b8baa06ca3b88634a3840);
+            
+        
+
+        circle_d63244e79e5204c7823122f536b51163.bindPopup(popup_fb2508c208f66eeccd5f43f24fa4ae6b)
+        ;
+
+        
+    
+    
+            var circle_db576084a8f4f5cb1567eb79bb41037b = L.circle(
+                [23.369, 116.714],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_7079a824b305135d67d6ec8fe2b8b6cf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0f4cce1b709c2b578259a6550a783b64 = $(`<div id="html_0f4cce1b709c2b578259a6550a783b64" style="width: 100.0%; height: 100.0%;"><b>Shantou</b><br>Avg PM2.5: 70.47</div>`)[0];
+                popup_7079a824b305135d67d6ec8fe2b8b6cf.setContent(html_0f4cce1b709c2b578259a6550a783b64);
+            
+        
+
+        circle_db576084a8f4f5cb1567eb79bb41037b.bindPopup(popup_7079a824b305135d67d6ec8fe2b8b6cf)
+        ;
+
+        
+    
+    
+            var circle_259fe335056db82be3aefc24b247497a = L.circle(
+                [41.805, 123.431],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_51893667a7e0d4b322a01018d6fd4e9d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_639fe1b628ed61adcf08f7398bafc913 = $(`<div id="html_639fe1b628ed61adcf08f7398bafc913" style="width: 100.0%; height: 100.0%;"><b>Shenyang</b><br>Avg PM2.5: 100.38</div>`)[0];
+                popup_51893667a7e0d4b322a01018d6fd4e9d.setContent(html_639fe1b628ed61adcf08f7398bafc913);
+            
+        
+
+        circle_259fe335056db82be3aefc24b247497a.bindPopup(popup_51893667a7e0d4b322a01018d6fd4e9d)
+        ;
+
+        
+    
+    
+            var circle_999f32c8da33b9e670d112442d4f508b = L.circle(
+                [22.543, 114.057],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_a76507490ea2162df9b4e4edfb9bbd60 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2727c057a61f762d3dc01180a4bce909 = $(`<div id="html_2727c057a61f762d3dc01180a4bce909" style="width: 100.0%; height: 100.0%;"><b>Shenzhen</b><br>Avg PM2.5: 67.29</div>`)[0];
+                popup_a76507490ea2162df9b4e4edfb9bbd60.setContent(html_2727c057a61f762d3dc01180a4bce909);
+            
+        
+
+        circle_999f32c8da33b9e670d112442d4f508b.bindPopup(popup_a76507490ea2162df9b4e4edfb9bbd60)
+        ;
+
+        
+    
+    
+            var circle_c217881ab27ed30a5ca3200a05d80dac = L.circle(
+                [38.042, 114.514],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_e59f1373507fedd7196a3f6d26c06787 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_caaac349d03d1d24d2997fa863cf3098 = $(`<div id="html_caaac349d03d1d24d2997fa863cf3098" style="width: 100.0%; height: 100.0%;"><b>Shijiazhuang</b><br>Avg PM2.5: 123.13</div>`)[0];
+                popup_e59f1373507fedd7196a3f6d26c06787.setContent(html_caaac349d03d1d24d2997fa863cf3098);
+            
+        
+
+        circle_c217881ab27ed30a5ca3200a05d80dac.bindPopup(popup_e59f1373507fedd7196a3f6d26c06787)
+        ;
+
+        
+    
+    
+            var circle_5864ed74efe88a0c02678fbb1c8f4d1a = L.circle(
+                [32.646, 110.775],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_b44c6dc0142c32f6183f89501a256c18 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_12bc5f7e9d7c01be7a12d79557b9cc1b = $(`<div id="html_12bc5f7e9d7c01be7a12d79557b9cc1b" style="width: 100.0%; height: 100.0%;"><b>Shiyan</b><br>Avg PM2.5: 100.34</div>`)[0];
+                popup_b44c6dc0142c32f6183f89501a256c18.setContent(html_12bc5f7e9d7c01be7a12d79557b9cc1b);
+            
+        
+
+        circle_5864ed74efe88a0c02678fbb1c8f4d1a.bindPopup(popup_b44c6dc0142c32f6183f89501a256c18)
+        ;
+
+        
+    
+    
+            var circle_bcb9df35c2b99330e6a2354c629121a0 = L.circle(
+                [31.298, 120.585],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_8bd46a1573723d08d86ec1c7915987e3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_62721898fa67f50400903ee333112b34 = $(`<div id="html_62721898fa67f50400903ee333112b34" style="width: 100.0%; height: 100.0%;"><b>Suzhou</b><br>Avg PM2.5: 96.51</div>`)[0];
+                popup_8bd46a1573723d08d86ec1c7915987e3.setContent(html_62721898fa67f50400903ee333112b34);
+            
+        
+
+        circle_bcb9df35c2b99330e6a2354c629121a0.bindPopup(popup_8bd46a1573723d08d86ec1c7915987e3)
+        ;
+
+        
+    
+    
+            var circle_2889862942c08ad55918aab46144bd71 = L.circle(
+                [37.873, 112.562],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_4c221c0140dadb244bf2de61c712161b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b9b969aae71be54e371458ed481665f0 = $(`<div id="html_b9b969aae71be54e371458ed481665f0" style="width: 100.0%; height: 100.0%;"><b>Taiyuan</b><br>Avg PM2.5: 112.16</div>`)[0];
+                popup_4c221c0140dadb244bf2de61c712161b.setContent(html_b9b969aae71be54e371458ed481665f0);
+            
+        
+
+        circle_2889862942c08ad55918aab46144bd71.bindPopup(popup_4c221c0140dadb244bf2de61c712161b)
+        ;
+
+        
+    
+    
+            var circle_8b17b6230f0c3a077f295b6ecdd5442d = L.circle(
+                [39.084, 117.2],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_278563fe53e1e468cb9da41246983d46 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bdde6060b5167c2f6476754e8e3b733d = $(`<div id="html_bdde6060b5167c2f6476754e8e3b733d" style="width: 100.0%; height: 100.0%;"><b>Tianjin</b><br>Avg PM2.5: 110.27</div>`)[0];
+                popup_278563fe53e1e468cb9da41246983d46.setContent(html_bdde6060b5167c2f6476754e8e3b733d);
+            
+        
+
+        circle_8b17b6230f0c3a077f295b6ecdd5442d.bindPopup(popup_278563fe53e1e468cb9da41246983d46)
+        ;
+
+        
+    
+    
+            var circle_ef93149ad31dfac5e5c6db8a5c05f3f8 = L.circle(
+                [30.592, 114.305],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_3415c08e06196aa7d70996a0a184f316 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_11f4b993067cbe54be4cb4e8685818d7 = $(`<div id="html_11f4b993067cbe54be4cb4e8685818d7" style="width: 100.0%; height: 100.0%;"><b>Wuhan</b><br>Avg PM2.5: 113.11</div>`)[0];
+                popup_3415c08e06196aa7d70996a0a184f316.setContent(html_11f4b993067cbe54be4cb4e8685818d7);
+            
+        
+
+        circle_ef93149ad31dfac5e5c6db8a5c05f3f8.bindPopup(popup_3415c08e06196aa7d70996a0a184f316)
+        ;
+
+        
+    
+    
+            var circle_4f7905184af882150ab243020313c660 = L.circle(
+                [31.568, 120.301],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_f419e0e8a03433fca5ba77c95731f1b1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2af75f05f1da2c5233777b902c8b25fe = $(`<div id="html_2af75f05f1da2c5233777b902c8b25fe" style="width: 100.0%; height: 100.0%;"><b>Wuxi</b><br>Avg PM2.5: 100.68</div>`)[0];
+                popup_f419e0e8a03433fca5ba77c95731f1b1.setContent(html_2af75f05f1da2c5233777b902c8b25fe);
+            
+        
+
+        circle_4f7905184af882150ab243020313c660.bindPopup(popup_f419e0e8a03433fca5ba77c95731f1b1)
+        ;
+
+        
+    
+    
+            var circle_5e53f81479909ecb5091658604d91631 = L.circle(
+                [24.479, 118.089],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_21e24828f78086ed5dad2ceb2b7aeb31 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_649d4e0d61b1190eecb47f45960e8331 = $(`<div id="html_649d4e0d61b1190eecb47f45960e8331" style="width: 100.0%; height: 100.0%;"><b>Xiamen</b><br>Avg PM2.5: 68.42</div>`)[0];
+                popup_21e24828f78086ed5dad2ceb2b7aeb31.setContent(html_649d4e0d61b1190eecb47f45960e8331);
+            
+        
+
+        circle_5e53f81479909ecb5091658604d91631.bindPopup(popup_21e24828f78086ed5dad2ceb2b7aeb31)
+        ;
+
+        
+    
+    
+            var circle_99449093c92f4514672aa5a5cac2ebf6 = L.circle(
+                [36.617, 101.778],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_677235cbc09b0baa5c2e1b2effc85995 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c922237fc165adbbefed28b78913939c = $(`<div id="html_c922237fc165adbbefed28b78913939c" style="width: 100.0%; height: 100.0%;"><b>Xining</b><br>Avg PM2.5: 98.41</div>`)[0];
+                popup_677235cbc09b0baa5c2e1b2effc85995.setContent(html_c922237fc165adbbefed28b78913939c);
+            
+        
+
+        circle_99449093c92f4514672aa5a5cac2ebf6.bindPopup(popup_677235cbc09b0baa5c2e1b2effc85995)
+        ;
+
+        
+    
+    
+            var circle_fa4e75df9568be2fde85a61c0044ae91 = L.circle(
+                [35.305, 113.926],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_5d6628b63c8101f0fda4021d37730100 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5877d795db4b7cc1fc39e1c04a1da940 = $(`<div id="html_5877d795db4b7cc1fc39e1c04a1da940" style="width: 100.0%; height: 100.0%;"><b>Xinxiang</b><br>Avg PM2.5: 124.71</div>`)[0];
+                popup_5d6628b63c8101f0fda4021d37730100.setContent(html_5877d795db4b7cc1fc39e1c04a1da940);
+            
+        
+
+        circle_fa4e75df9568be2fde85a61c0044ae91.bindPopup(popup_5d6628b63c8101f0fda4021d37730100)
+        ;
+
+        
+    
+    
+            var circle_9238239c68fb68612b292cb31e25a785 = L.circle(
+                [34.341, 108.939],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_d663e7d6c3fa41dca4493610dbdeab1a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f5319d486104a20be2125f60fc543606 = $(`<div id="html_f5319d486104a20be2125f60fc543606" style="width: 100.0%; height: 100.0%;"><b>Xi’an</b><br>Avg PM2.5: 117.04</div>`)[0];
+                popup_d663e7d6c3fa41dca4493610dbdeab1a.setContent(html_f5319d486104a20be2125f60fc543606);
+            
+        
+
+        circle_9238239c68fb68612b292cb31e25a785.bindPopup(popup_d663e7d6c3fa41dca4493610dbdeab1a)
+        ;
+
+        
+    
+    
+            var circle_efee8c4231e917013921892f5fb6a64b = L.circle(
+                [34.02, 113.821],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_d19afb3a6c7a660a460294e6462ab72f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_430c14adbd0f3eedfe50932b902329d8 = $(`<div id="html_430c14adbd0f3eedfe50932b902329d8" style="width: 100.0%; height: 100.0%;"><b>Xuchang</b><br>Avg PM2.5: 121.72</div>`)[0];
+                popup_d19afb3a6c7a660a460294e6462ab72f.setContent(html_430c14adbd0f3eedfe50932b902329d8);
+            
+        
+
+        circle_efee8c4231e917013921892f5fb6a64b.bindPopup(popup_d19afb3a6c7a660a460294e6462ab72f)
+        ;
+
+        
+    
+    
+            var circle_7d8f19c39fff2cd2d73fdfed8ccf8c6a = L.circle(
+                [38.487, 106.231],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_11ff8f9d41d787a5c70c0367c2a40f37 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_42be36bdb78f9b8ceadd995996929493 = $(`<div id="html_42be36bdb78f9b8ceadd995996929493" style="width: 100.0%; height: 100.0%;"><b>Yinchuan</b><br>Avg PM2.5: 100.16</div>`)[0];
+                popup_11ff8f9d41d787a5c70c0367c2a40f37.setContent(html_42be36bdb78f9b8ceadd995996929493);
+            
+        
+
+        circle_7d8f19c39fff2cd2d73fdfed8ccf8c6a.bindPopup(popup_11ff8f9d41d787a5c70c0367c2a40f37)
+        ;
+
+        
+    
+    
+            var circle_9e240cec138cbc95635cb4c5a5daa6bd = L.circle(
+                [22.925, 112.039],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_859a107cf4b76bb4519a07016756860e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_83d14bae8a96a0f18b3fc241a6b63bf1 = $(`<div id="html_83d14bae8a96a0f18b3fc241a6b63bf1" style="width: 100.0%; height: 100.0%;"><b>Yunfu</b><br>Avg PM2.5: 75.76</div>`)[0];
+                popup_859a107cf4b76bb4519a07016756860e.setContent(html_83d14bae8a96a0f18b3fc241a6b63bf1);
+            
+        
+
+        circle_9e240cec138cbc95635cb4c5a5daa6bd.bindPopup(popup_859a107cf4b76bb4519a07016756860e)
+        ;
+
+        
+    
+    
+            var circle_5b58d0029fb85e2f9e15f273db1075ef = L.circle(
+                [34.746, 113.625],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_005396a439ff8cd260ec243ccb2326a5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b2b43cf856bdd5828e0f10c2e55ee62d = $(`<div id="html_b2b43cf856bdd5828e0f10c2e55ee62d" style="width: 100.0%; height: 100.0%;"><b>Zhengzhou</b><br>Avg PM2.5: 121.57</div>`)[0];
+                popup_005396a439ff8cd260ec243ccb2326a5.setContent(html_b2b43cf856bdd5828e0f10c2e55ee62d);
+            
+        
+
+        circle_5b58d0029fb85e2f9e15f273db1075ef.bindPopup(popup_005396a439ff8cd260ec243ccb2326a5)
+        ;
+
+        
+    
+    
+            var circle_7c51fec2e4ebfed6fde6a9fae88c9d99 = L.circle(
+                [27.833, 113.15],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_29be579789730b6d148e4b00b7b532e9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0f82e7d4e7cb4fbc58d0ec61a9caface = $(`<div id="html_0f82e7d4e7cb4fbc58d0ec61a9caface" style="width: 100.0%; height: 100.0%;"><b>Zhuzhou</b><br>Avg PM2.5: 105.53</div>`)[0];
+                popup_29be579789730b6d148e4b00b7b532e9.setContent(html_0f82e7d4e7cb4fbc58d0ec61a9caface);
+            
+        
+
+        circle_7c51fec2e4ebfed6fde6a9fae88c9d99.bindPopup(popup_29be579789730b6d148e4b00b7b532e9)
+        ;
+
+        
+    
+    
+            var circle_20c24c4611b3110205352c232f502225 = L.circle(
+                [43.825, 87.616],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+    
+        var popup_98b8fa837f7fd11bc98724fcf721d2a6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_309c5d34ca0fb8ffcc949265aeae765c = $(`<div id="html_309c5d34ca0fb8ffcc949265aeae765c" style="width: 100.0%; height: 100.0%;"><b>Ürümqi</b><br>Avg PM2.5: 107.94</div>`)[0];
+                popup_98b8fa837f7fd11bc98724fcf721d2a6.setContent(html_309c5d34ca0fb8ffcc949265aeae765c);
+            
+        
+
+        circle_20c24c4611b3110205352c232f502225.bindPopup(popup_98b8fa837f7fd11bc98724fcf721d2a6)
+        ;
+
+        
+    
+    
+            tile_layer_a6c0c19efbfed171043ccfa3b40dbf2a.addTo(map_4680dfd93dfb07db8f9e7baa645afd5e);
+        
+</script>
+</html>
