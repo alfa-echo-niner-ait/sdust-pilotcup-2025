@@ -2,6 +2,10 @@
 
 This folder contains the **interactive web application** for air quality forecasting and visualization, built with [Plotly Dash](https://dash.plotly.com/). The app is the main user interface for the project, allowing users to explore historical weather and air quality data, visualize trends, and make real-time PM2.5 predictions using the trained LSTM model.
 
+## App Preview
+
+  ![App Preview](../app-preview.gif)
+
 ## Features
 
 - **Interactive Data Visualization:**  

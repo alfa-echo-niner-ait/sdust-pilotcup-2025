@@ -114,7 +114,7 @@ This project presents a complete pipeline for air quality forecasting, from data
 
 ## 📽️ App Preview
 
-  ![App Preview](app-preview.mp4)
+  ![App Preview](app-preview.gif)
 
 ## 🧑‍💻 Authors
 
